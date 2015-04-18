@@ -27,6 +27,7 @@
   "homepage": "https://github.com/jedijulia/my-assem",
   "dependencies": {
     "gulp": "^3.8.11",
-    "gulp-jslint": "^0.2.2"
+    "gulp-jshint": "^1.10.0",
+    "jshint-stylish": "^1.0.1"
   }
 }

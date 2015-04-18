@@ -1,0 +1,32 @@
+{
+  "name": "my-assem",
+  "version": "1.0.0",
+  "description": "myassem assembler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jedijulia/my-assem.git"
+  },
+  "keywords": [
+    "myassem",
+    "assembler"
+  ],
+  "author": [
+    "Arnelle Balane <arnellebalane@gmail.com>",
+    "Paulinko Kiel Labian <kiellabian@gmail.com>",
+    "Emmanuel Lodovice <name3anad@gmail.com>",
+    "Julia Camille Menchavez <jcmenchavez@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jedijulia/my-assem/issues"
+  },
+  "homepage": "https://github.com/jedijulia/my-assem",
+  "dependencies": {
+    "gulp": "^3.8.11",
+    "gulp-jslint": "^0.2.2"
+  }
+}

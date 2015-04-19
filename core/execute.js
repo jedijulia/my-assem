@@ -56,4 +56,71 @@ function execute(memory) {
     }
 
 
+
+
+    function jl(params) {
+        var l = stack.length;
+        if (l >= 2 && stack[l-1] < stack[l-2]) {
+            jmp(params);
+        } else if (l < 2) {
+            error = "Null Compare Error";
+        }
+    }
+
+    function jg(params) {
+        var l = stack.length;
+        if (l >= 2 && stack[l-1] > stack[l-2]) {
+            jmp(params);
+        } else if (l < 2) {
+            error = "Null Compare Error";
+        }
+    }
+
+    function jeq(params) {
+        var l = stack.length;
+        if (l >= 2 && stack[l-1] == stack[l-2]) {
+            jmp(params);
+        } else if (l < 2) {
+            error = "Null Compare Error";
+        }
+    }
+
+    function add() {
+        var l = stack.length;
+        if (l >= 2) {
+            var sum = stack.pop() + stack.pop();
+            if (sum <= 99) {
+                pushi(sum);
+            } else {
+                error = "Overflow Error";
+            }
+        } else {
+            error = "Null Operand Error";
+        }
+    }
+
+    function sub() {
+        var l = stack.length;
+        if (l >= 2) {
+            var diff = stack.pop() - stack.pop();
+            if (diff >= 0) {
+                pushi(diff);
+            } else {
+                error = "Overflow Error";
+            }
+        } else {
+            error = "Null Operand Error";
+        }
+    }
+
+    function cmp() {
+        var l = stack.length;
+        if (l >= 2) {
+            var a = (stack.pop() == stack.pop()) ? 1 : 0;
+            pushi(a);
+        } else if (l < 2) {
+            error = "Null Compare Error";
+        }
+    }
+
 }

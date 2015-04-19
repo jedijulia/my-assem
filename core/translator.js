@@ -32,7 +32,6 @@ var translate = (function() {
         resolve_vars(code);
 
         var found_end = false;
-        // CHECK FOR END
         for (var i = 0; i < code.length; i++) {
             if (found_end) {
                 break;
@@ -170,7 +169,10 @@ var translate = (function() {
 
     function get_vars_identifier_command(command, line_number) {
         var identifier = command[1];
-        // CHECK IF IT HAS NO INVALID CHARACTERS!
+
+        if (!identifier.match(/^[A-Za-z_][A-Za-z0-9_]*$/)) {
+            throw new Error('Invalid identifier at line ' + line_number + ': ' + command);
+        }
         //identifier not yet found in the table
         if (!var_table.hasOwnProperty(identifier)) {
             var_table[identifier] = pointer;
@@ -179,8 +181,11 @@ var translate = (function() {
     }
 
     function get_vars_loc_identifier_command(command, line_number) {
-        // CHECK IF IT HAS NO INVALID CHARACTERS!
         var loc_identifier = command[1];
+
+        if (!loc_identifier.match(/^[A-Za-z_][A-Za-z0-9_]*$/)) {
+            throw new Error('Invalid identifier at line ' + line_number + ': ' + command);
+        }
         if (!label_table.hasOwnProperty(loc_identifier)) {
             label_table[loc_identifier] = pointer;
             pointer++;
@@ -190,23 +195,23 @@ var translate = (function() {
     return translate;
 })();
 
-commands = [
-    'begin',
-    'read N',
-    'pushv N',
-    'pushi 2',
-    'mod',
-    'pushi 0',
-    'jeq even',
-    'pushi 0',
-    'pop ans',
-    'jmp stop',
-    'even:',
-    'pushi 1',
-    'pop ans',
-    'stop:',
-    'disp ans',
-    'end'
-];
+// commands = [
+//     'begin',
+//     'read N',
+//     'pushv N',
+//     'pushi 2',
+//     'mod',
+//     'pushi 0',
+//     'jeq even',
+//     'pushi 0',
+//     'pop ans',
+//     'jmp stop',
+//     'even:',
+//     'pushi 1',
+//     'pop ans',
+//     'stop:',
+//     'disp ans',
+//     'end'
+// ];
 
-console.log(translate(commands));
+// console.log(translate(commands));

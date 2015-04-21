@@ -1,6 +1,6 @@
 var translate = (function() {
 
-    var symbol_table = {
+    symbol_table = {
         'read': '50',
         'disp': '51',
         'pushi': '52',

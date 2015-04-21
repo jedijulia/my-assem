@@ -7,6 +7,37 @@
     </head>
 
     <body>
+        <nav>
+            <a href="#">File</a>
+            <a href="#">Translate</a>
+            <a href="#">Trace</a>
+            <a href="#">Execute</a>
+        </nav>
+
+        <main>
+            <textarea name="editor"></textarea>
+
+            <article id="overlay">
+                <div>
+                    <section id="translation">
+                        <h3>Machine Code</h3>
+                    </section>
+
+                    <section id="stack">
+                        <h3>Stack</h3>
+                    </section>
+                </div>
+
+                <div>
+                    <section id="console">
+                        <h3>Console</h3>
+                    </section>
+                </div>
+            </article>
+        </main>
+
+        
+		<script src="core/translator.js"></script>
         <script src="assets/javascripts/application.js"></script>
     </body>
 </html>

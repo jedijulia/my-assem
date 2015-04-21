@@ -1,0 +1,132 @@
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    height: 100%;
+    font-size: 62.5%;
+}
+
+
+body {
+    height: 100%;
+    font-family: "Consolas", monospace;
+    color: #333;
+    background-color: #1d1f21;
+}
+
+
+nav {
+    display: flex;
+    padding: 0 0.5rem;
+    background-color: #c5c8c6;
+}
+
+
+nav a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #1d1f21;
+    padding: 0.4rem 0.5rem 0.2rem 0.5rem;
+    outline: none;
+}
+
+nav a:hover,
+nav a:focus {
+    color: #eee;
+    background-color: #009688;
+}
+
+
+main {
+    position: relative;
+    display: flex;
+    height: calc(100% - 20px);
+    overflow: hidden;
+}
+
+
+main textarea {
+    width: 100%;
+    padding: 1rem;
+    font: normal 1.6rem/1 "Consolas", monospace;
+    color: #eee;
+    background-color: transparent;
+    border: 0;
+    resize: none;
+    outline: none;
+}
+
+
+article {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+}
+
+
+article > div {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+}
+
+article > div:first-child {
+    top: 0;
+    bottom: 15rem;
+}
+
+article > div:last-child {
+    bottom: 0;
+    height: 15rem;
+}
+
+
+section {
+    display: block;
+    width: 100%;
+    padding: 1.5rem;
+    color: #eee;
+}
+
+#translation {
+    background-color: rgba(0, 131, 143, 0.1);
+}
+
+#stack {
+    background-color: rgba(46, 125, 50, 0.1);
+}
+
+#console {
+    background-color: rgba(216, 67, 21, 0.1);
+}
+
+
+section h3 {
+    margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+    padding: 0.5rem 1.5rem 0.3rem 1.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+#translation h3 {
+    background-color: #00838f;
+}
+
+#stack h3 {
+    background-color: #2e7d32;
+}
+
+#console h3 {
+    background-color: #d84315;
+}

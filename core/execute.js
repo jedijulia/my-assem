@@ -1,4 +1,5 @@
-function execute(memory) {
+function execute(info) {
+    var memory = info.translation;
     var run = true;
     var error = null;
     var program_counter = 0;
@@ -6,23 +7,15 @@ function execute(memory) {
     var stack = [];
     var max_stack_size = 5;
 
-    while(run) {
-        var command = memory[program_counter];
-        var code = command.substring(0, 2);
-        var params = command.substring(2);
-        var prev_pc = program_counter;
-        this[resolve_code_to_name(code)](params);
-        if (program_counter == prev_pc) {
-            program_counter += 1;
-        }
-        if (error != null) {
-            alert(error);
-        }
-    }
 
     function resolve_code_to_name(code) {
         // should return the string name of the function corresponding to the
         // code in the symbol  table
+        for (var name in symbol_table) {
+            if (symbol_table.hasOwnProperty(name) && symbol_table[name] == code) {
+                return name;
+            }
+        }
     }
 
     function begin(params) {
@@ -169,6 +162,27 @@ function execute(memory) {
         } else if (l < 2) {
             error = "Null Compare Error";
         }
+    }
+
+    function labeldef() {
+        // do nothing :)
+    }
+
+    while(run) {
+        var command = memory[program_counter];
+        console.log(command);
+        var code = command.substring(0, 2);
+        var params = parseInt(command.substring(2));
+        var prev_pc = program_counter;
+        var func = resolve_code_to_name(code);
+        eval(func)(params);
+        if (program_counter == prev_pc) {
+            program_counter += 1;
+        }
+        if (error != null) {
+            alert(error);
+        }
+        console.log(stack);
     }
 
 }

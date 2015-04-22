@@ -8,10 +8,10 @@
 
     <body>
         <nav>
-            <a href="#">File</a>
-            <a href="#">Translate</a>
-            <a href="#">Trace</a>
-            <a href="#">Execute</a>
+            <a href="#" data-action="file">File</a>
+            <a href="#" data-action="translate">Translate</a>
+            <a href="#" data-action="trace">Trace</a>
+            <a href="#" data-action="execute">Execute</a>
         </nav>
 
         <main>
@@ -22,6 +22,7 @@
             <div>
                 <section id="translation">
                     <h3>Machine Code</h3>
+                    <ul></ul>
                 </section>
 
                 <section id="stack">
@@ -37,6 +38,8 @@
         </aside>
 
 
-        <script src="assets/javascripts/application.css"></script>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="core/translator.js"></script>
+        <script src="assets/javascripts/application.js"></script>
     </body>
 </html>

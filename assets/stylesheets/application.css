@@ -55,7 +55,7 @@ main {
 main textarea {
     width: 100%;
     padding: 1rem;
-    font: normal 1.6rem/1 "Consolas", monospace;
+    font: normal 1.6rem/1.6rem "Consolas", monospace;
     color: #eee;
     background-color: transparent;
     border: 0;
@@ -94,7 +94,6 @@ aside > div:last-child {
 section {
     display: block;
     width: 100%;
-    padding: 1.5rem;
     color: #eee;
 }
 
@@ -112,7 +111,6 @@ section {
 
 
 section h3 {
-    margin: -1.5rem -1.5rem 1.5rem -1.5rem;
     padding: 0.5rem 1.5rem 0.3rem 1.5rem;
     text-align: center;
     text-transform: uppercase;
@@ -129,4 +127,17 @@ section h3 {
 
 #console h3 {
     background-color: #d84315;
+}
+
+
+section ul {
+    list-style: none;
+    padding: 1rem 0;
+}
+
+
+section ul li {
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    text-align: center;
 }

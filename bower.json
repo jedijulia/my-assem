@@ -1,0 +1,28 @@
+{
+  "name": "my-assem",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jedijulia/my-assem",
+  "authors": [
+    "Arnelle Balane <arnellebalane@gmail.com>",
+    "Paulinko Kiel Labian <kiellabian@gmail.com>",
+    "Emmanuel Lodovice <name3anad@gmail.com>",
+    "Julia Camille Menchavez <jcmenchavez@gmail.com>"
+  ],
+  "description": "myassem assembler",
+  "main": "index.html",
+  "keywords": [
+    "myassem",
+    "assembler"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3"
+  }
+}

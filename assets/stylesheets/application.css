@@ -64,28 +64,28 @@ main textarea {
 }
 
 
-article {
+aside {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
-    width: 300px;
+    width: 30rem;
 }
 
 
-article > div {
+aside > div {
     position: absolute;
     left: 0;
     right: 0;
     display: flex;
 }
 
-article > div:first-child {
+aside > div:first-child {
     top: 0;
     bottom: 15rem;
 }
 
-article > div:last-child {
+aside > div:last-child {
     bottom: 0;
     height: 15rem;
 }

@@ -8,6 +8,7 @@ var menu = {
         code = code.split(/\r?\n/g);
 
         var translated = translate(code);
+        console.log(translated.translation);
         var container = $('#translation ul').empty();
         for (var i = 0, l = translated.translation.length; i < l; i++) {
             container.append('<li>' + translated.translation[i] + '</li>');

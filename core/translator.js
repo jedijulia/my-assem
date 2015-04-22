@@ -29,6 +29,7 @@ var translate = (function() {
     var translation = [];
 
     function translate(code) {
+        translation = [];
         resolve_vars(code);
 
         var found_end = false;
@@ -150,7 +151,7 @@ var translate = (function() {
             } else {
                 throw new Error('Invalid command at line ' + line_number + ': ' + command);
             }
-        } 
+        }
     }
 
     function get_vars_twopart_command(command, line_number) {
@@ -191,7 +192,7 @@ var translate = (function() {
             pointer++;
         }
     }
-        
+
     return translate;
 })();
 

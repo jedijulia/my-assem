@@ -29,7 +29,6 @@ var translate = (function() {
 
     var translation = [];
 
-
     function translate(code) {
         translation = [];
         resolve_vars(code);
@@ -146,9 +145,9 @@ var translate = (function() {
         var label = command[0];
         if (onepart_commands.indexOf(label) === -1) { //not in list
             if (label.length > 1 && (label[label.length - 1] === ':')) {
-                if (!label_table.hasOwnProperty(label.substring(0, label.length - 1))) {
-                    label_table[label] = pointer;
-                    pointer++;
+                var label_mod = label.substring(0, label.length - 1);
+                if (!label_table.hasOwnProperty(label_mod)) {
+                    label_table[label_mod] = line_number;
                 }
             } else {
                 throw new Error('Invalid command at line ' + line_number + ': ' + command);
@@ -188,10 +187,6 @@ var translate = (function() {
 
         if (!loc_identifier.match(/^[A-Za-z_][A-Za-z0-9_]*$/)) {
             throw new Error('Invalid identifier at line ' + line_number + ': ' + command);
-        }
-        if (!label_table.hasOwnProperty(loc_identifier)) {
-            label_table[loc_identifier] = pointer;
-            pointer++;
         }
     }
 

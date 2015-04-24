@@ -1,6 +1,6 @@
 var translate = (function() {
 
-    symbol_table = {
+    var symbol_table = {
         'read': '50',
         'disp': '51',
         'pushi': '52',
@@ -19,7 +19,8 @@ var translate = (function() {
         'labeldef': '65'
     };
 
-    var twopart_commands = ['read', 'disp', 'pushi', 'pushv', 'pop', 'jmp', 'jl', 'jg', 'jeq'];
+    var twopart_commands = ['read', 'disp', 'pushi', 'pushv', 'pop', 'jmp',
+        'jl', 'jg', 'jeq'];
     var onepart_commands = ['mod', 'add', 'sub', 'cmp', 'begin', 'end'];
 
     var var_table = {};
@@ -27,6 +28,7 @@ var translate = (function() {
     var pointer = 30;
 
     var translation = [];
+
 
     function translate(code) {
         translation = [];

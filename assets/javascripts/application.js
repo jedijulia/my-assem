@@ -1,32 +1,37 @@
-var menu = {
-    file: function() {
-        console.info('FILE');
-    },
+var translator = {
+    data: null,
+    container: $('#translation ul'),
     translate: function() {
-        var code = $('textarea').val().trim();
-        code = code.replace(/(\r?\n)+/g, '\n').replace(/ +/g, ' ');
-        code = code.split(/\r?\n/g);
+        translator.data = $('textarea').val().trim();
+        translator.data = translator.data.replace(/(\r?\n)+/g, '\n');
+        translator.data = translator.data.replace(/ +/g, ' ');
+        translator.data = translator.data.split(/\r?\n/g);
 
-        var translated = translate(code);
-        console.log(translated.translation);
-        var container = $('#translation ul').empty();
-        for (var i = 0, l = translated.translation.length; i < l; i++) {
-            container.append('<li>' + translated.translation[i] + '</li>');
+        translator.data = translate(translator.data);
+        var container = translator.container.empty();
+        for (var i = 0, l = translator.data.translation.length; i < l; i++) {
+            var item = '<li>' + translator.data.translation[i] + '</li>';
+            translator.container.append(item);
         }
+    }
+};
 
-        return translated;
-    },
-    trace: function() {
-        console.info('TRACE');
-    },
+
+var executer = {
     execute: function() {
-        var code = menu.translate();
-        var output = execute(code);
-        console.info(output);
+        if (!translator.data) {
+            translator.translate();
+        }
+        execute(translator.data);
     }
 };
 
 
 $('nav').on('click', 'a[data-action]', function() {
-    menu[$(this).data('action')]();
+    var action = $(this).data('action');
+    if (action === 'translate') {
+        translator.translate();
+    } else if (action === 'execute') {
+        executer.execute();
+    }
 });

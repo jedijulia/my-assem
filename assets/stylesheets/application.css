@@ -141,3 +141,8 @@ section ul li {
     line-height: 1.6rem;
     text-align: center;
 }
+
+section ul li.highlight {
+    color: #333;
+    background-color: white;
+}

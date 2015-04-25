@@ -13,12 +13,16 @@ var menu = {
         for (var i = 0, l = translated.translation.length; i < l; i++) {
             container.append('<li>' + translated.translation[i] + '</li>');
         }
+
+        return translated;
     },
     trace: function() {
         console.info('TRACE');
     },
     execute: function() {
-        console.info('EXECUTE');
+        var code = menu.translate();
+        var output = execute(code);
+        console.info(output);
     }
 };
 

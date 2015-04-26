@@ -13,6 +13,10 @@ var translator = {
             var item = '<li>' + translator.data.translation[i] + '</li>';
             translator.container.append(item);
         }
+    },
+    highlight: function(index) {
+        translator.container.children().removeClass('highlight');
+        translator.container.children().eq(index).addClass('highlight');
     }
 };
 
@@ -25,6 +29,11 @@ var executer = {
         execute(translator.data);
     }
 };
+
+
+$(document).on('changedpc', function(e) {
+    translator.highlight(e.pc);
+});
 
 
 $('nav').on('click', 'a[data-action]', function() {

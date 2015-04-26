@@ -168,21 +168,40 @@ function execute(info) {
         // do nothing :)
     }
 
-    while(run) {
-        var command = memory[program_counter];
-        console.log(command);
-        var code = command.substring(0, 2);
-        var params = parseInt(command.substring(2));
-        var prev_pc = program_counter;
-        var func = resolve_code_to_name(code);
-        eval(func)(params);
-        if (program_counter == prev_pc) {
-            program_counter += 1;
-        }
-        if (error != null) {
-            alert(error);
-        }
-        console.log(stack);
-    }
+    // while(run) {
+    //     var command = memory[program_counter];
+    //     console.log(command);
+    //     var code = command.substring(0, 2);
+    //     var params = parseInt(command.substring(2));
+    //     var prev_pc = program_counter;
+    //     var func = resolve_code_to_name(code);
+    //     eval(func)(params);
+    //     if (program_counter == prev_pc) {
+    //         program_counter += 1;
+    //     }
+    //     if (error != null) {
+    //         alert(error);
+    //     }
+    //     console.log(stack);
+    // }
 
+    var _t = setInterval(function() {
+        if (run) {
+            $(document).trigger({ type: 'changedpc', pc: program_counter });
+            var command = memory[program_counter];
+            var code = command.substring(0, 2);
+            var params = parseInt(command.substring(2));
+            var prev_pc = program_counter;
+            var func = resolve_code_to_name(code);
+            eval(func)(params);
+            if (program_counter === prev_pc) {
+                program_counter += 1;
+            }
+            if (error) {
+                console.error(error);
+            }
+        } else {
+            clearInterval(_t);
+        }
+    }, 1000);
 }

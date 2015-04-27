@@ -1,6 +1,7 @@
 var translator = {
     data: null,
     container: $('#translation ul'),
+    variables: $('#variables ul'),
     translate: function() {
         translator.data = $('textarea').val().trim();
         translator.data = translator.data.replace(/(\r?\n)+/g, '\n');
@@ -12,6 +13,18 @@ var translator = {
         for (var i = 0, l = translator.data.translation.length; i < l; i++) {
             var item = '<li>' + translator.data.translation[i] + '</li>';
             translator.container.append(item);
+        }
+
+        var variables = [];
+        for (var identifier in translator.data.var_table) {
+            var item = $('<li data-index="'
+                + translator.data.var_table[identifier] + '">'
+                + identifier + '</li>');
+            variables.push(item);
+        }
+        translator.variables.empty();
+        for (var i = 0, l = variables.length; i < l; i++) {
+            translator.variables.append(variables);
         }
     }
 };

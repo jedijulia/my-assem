@@ -74,6 +74,12 @@ aside {
 }
 
 
+aside > div {
+    position: relative;
+    width: 100%;
+}
+
+
 section {
     display: block;
     width: 100%;
@@ -85,10 +91,23 @@ section {
 }
 
 #stack {
+    position: absolute;
+    top: 0;
+    bottom: 50%;
+    width: 100%;
     background-color: rgba(46, 125, 50, 0.1);
 }
 
+#variables {
+    position: absolute;
+    top: 50%;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(156, 39, 176, 0.1);
+}
+
 #popup {
+    width: 30rem;
     background-color: rgba(216, 67, 21, 0.1);
 }
 
@@ -112,6 +131,10 @@ section h3 {
     background-color: #2e7d32;
 }
 
+#variables h3 {
+    background-color: #9c27b0;
+}
+
 #popup h3 {
     background-color: #d84315;
 }
@@ -131,6 +154,22 @@ section ul li {
     font-size: 1.6rem;
     line-height: 1.6rem;
     text-align: center;
+}
+
+section ul li[data-index] {
+    position: relative;
+}
+
+section ul li[data-index]:before {
+    content: attr(data-index);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 2.5rem;
+    background-color: #ddd;
+    font-size: 1.2rem;
+    color: #333;
 }
 
 section ul li.highlight {
@@ -154,11 +193,6 @@ section ul li.highlight {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
-}
-
-
-#popup {
-    width: 30rem;
 }
 
 

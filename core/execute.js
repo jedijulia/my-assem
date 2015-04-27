@@ -1,6 +1,9 @@
+var input = null;
+
 function execute(info) {
     var memory = info.translation;
     var run = true;
+    var blocked = false;
     var error = null;
     var program_counter = 0;
 
@@ -27,14 +30,19 @@ function execute(info) {
     }
 
     function read(params) {
-        var input = prompt("Enter a number");
-        var num = parseInt(input)
-        if (input.length > 2 || input === NaN) {
-            error = "Invalid input.";
-            run = false;
-            return;
+        if (input) {
+            blocked = false;
+            var num = parseInt(input)
+            if (input.length > 2 || input === NaN) {
+                error = "Invalid input.";
+                run = false;
+                return;
+            }
+            memory[params] = num;
+        } else {
+            $(document).trigger({ type: 'askinput', message: 'Enter a number' });
+            blocked = true;
         }
-        memory[params] = num;
     }
 
     function disp(params) {
@@ -168,22 +176,6 @@ function execute(info) {
         // do nothing :)
     }
 
-    // while(run) {
-    //     var command = memory[program_counter];
-    //     console.log(command);
-    //     var code = command.substring(0, 2);
-    //     var params = parseInt(command.substring(2));
-    //     var prev_pc = program_counter;
-    //     var func = resolve_code_to_name(code);
-    //     eval(func)(params);
-    //     if (program_counter == prev_pc) {
-    //         program_counter += 1;
-    //     }
-    //     if (error != null) {
-    //         alert(error);
-    //     }
-    //     console.log(stack);
-    // }
 
     var _t = setInterval(function() {
         if (run) {
@@ -194,11 +186,15 @@ function execute(info) {
             var prev_pc = program_counter;
             var func = resolve_code_to_name(code);
             eval(func)(params);
-            if (program_counter === prev_pc) {
-                program_counter += 1;
-            }
-            if (error) {
-                console.error(error);
+            if (!blocked) {
+                if (program_counter === prev_pc) {
+                    program_counter += 1;
+                }
+                if (error) {
+                    $(document).trigger({ type: 'error', error: error });
+                }
+
+                $(document).trigger({ type: 'stack', stack: stack });
             }
         } else {
             clearInterval(_t);

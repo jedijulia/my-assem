@@ -65,29 +65,12 @@ main textarea {
 
 
 aside {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 30rem;
-}
-
-
-aside > div {
-    position: absolute;
-    left: 0;
-    right: 0;
     display: flex;
-}
-
-aside > div:first-child {
-    top: 0;
-    bottom: 15rem;
-}
-
-aside > div:last-child {
-    bottom: 0;
-    height: 15rem;
+    position: absolute;
+    top: 6rem;
+    right: 0;
+    bottom: 4rem;
+    width: 30rem;
 }
 
 
@@ -105,8 +88,12 @@ section {
     background-color: rgba(46, 125, 50, 0.1);
 }
 
-#console {
+#popup {
     background-color: rgba(216, 67, 21, 0.1);
+}
+
+#popup.error {
+    background-color: rgba(244, 67, 54, 0.1);
 }
 
 
@@ -125,8 +112,12 @@ section h3 {
     background-color: #2e7d32;
 }
 
-#console h3 {
+#popup h3 {
     background-color: #d84315;
+}
+
+#popup.error h3 {
+    background-color: #f44336;
 }
 
 
@@ -145,4 +136,57 @@ section ul li {
 section ul li.highlight {
     color: #333;
     background-color: white;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+#popup-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 2rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+#popup {
+    width: 30rem;
+}
+
+
+#popup p {
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+
+#popup form {
+    padding: 1.5rem;
+}
+
+
+#popup form p {
+    text-align: left;
+    padding: 0;
+}
+
+
+#popup form input {
+    width: 100%;
+    font: normal 1.4rem/1 "Consolas", monospace;
+    color: white;
+    padding: 0.5rem 0.8rem;
+    border: 0;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    outline: none;
 }

@@ -52,12 +52,6 @@ var translate = (function() {
             }
         }
 
-        //print things
-        for (var i = 0; i < code.length; i++) {
-            console.log(code[i] + ': ' + translation[i]);
-        }
-        console.log(var_table);
-        console.log(label_table);
         return {'translation': translation, 'var_table': var_table, 'label_table': label_table};
     }
 

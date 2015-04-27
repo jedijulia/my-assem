@@ -90,6 +90,13 @@ section {
     display: block;
     width: 100%;
     color: #eee;
+    will-change: transform;
+    transition: transform 200ms ease;
+    transform-origin: top left;
+}
+
+section.unshown {
+    transform: scale(0);
 }
 
 #translation {
@@ -116,6 +123,7 @@ section {
     position: relative;
     width: 30rem;
     background-color: rgba(216, 67, 21, 0.1);
+    transform-origin: center center;
 }
 
 #popup.error {

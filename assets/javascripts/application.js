@@ -88,14 +88,20 @@ var popup = {
     },
     open: function() {
         popup.container.removeClass('hidden');
+        setTimeout(function() {
+            popup.dom.removeClass('unshown');
+            popup.dom.find('input').trigger('focus');
+        }, 0);
         popup.opened = true;
     },
     close: function() {
-        popup.container.addClass('hidden');
-        popup.dom.removeAttr('class');
-        popup.dom.find('div').empty();
-        popup.dom.find('span').removeClass('hidden');
-        popup.opened = false;
+        popup.dom.attr('class', 'unshown');
+        setTimeout(function() {
+            popup.container.addClass('hidden');
+            popup.dom.find('div').empty();
+            popup.dom.find('span').removeClass('hidden');
+            popup.opened = false;
+        }, 200);
     }
 };
 
@@ -134,8 +140,10 @@ $('nav').on('click', 'a[data-action]', function(e) {
     if (action === 'file') {
         $('input[type="file"]').trigger('click');
     } else if (action === 'translate') {
+        $('aside section').removeClass('unshown');
         translator.translate();
     } else if (action === 'execute') {
+        $('aside section').removeClass('unshown');
         executer.execute();
     }
 });
@@ -154,6 +162,7 @@ $('input[type="file"]').on('change', function() {
         translator.data = null;
         ui.reset(true);
         $('input[type="file"]').val('');
+        $('aside section').addClass('unshown');
     };
     reader.readAsText(file);
 });

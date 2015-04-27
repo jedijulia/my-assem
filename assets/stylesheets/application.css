@@ -107,6 +107,7 @@ section {
 }
 
 #popup {
+    position: relative;
     width: 30rem;
     background-color: rgba(216, 67, 21, 0.1);
 }
@@ -200,6 +201,24 @@ section ul li.highlight {
     font-size: 1.4rem;
     text-align: center;
     padding: 1.5rem;
+}
+
+
+#popup span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.6rem;
+    text-align: center;
+    line-height: 2rem;
+    cursor: pointer;
+    opacity: 0.75;
+}
+
+#popup span:hover {
+    opacity: 1;
 }
 
 

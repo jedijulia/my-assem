@@ -68,6 +68,7 @@ var popup = {
 
             popup.dom.find('h3').text('Input');
             popup.dom.find('div').html(content);
+            popup.dom.find('span').addClass('hidden');
             popup.open();
         }
     },
@@ -88,6 +89,7 @@ var popup = {
         popup.container.addClass('hidden');
         popup.dom.removeAttr('class');
         popup.dom.find('div').empty();
+        popup.dom.find('span').removeClass('hidden');
         popup.opened = false;
     }
 };
@@ -128,4 +130,9 @@ $('nav').on('click', 'a[data-action]', function(e) {
     } else if (action === 'execute') {
         executer.execute();
     }
+});
+
+
+$('#popup span').on('click', function() {
+    popup.close();
 });

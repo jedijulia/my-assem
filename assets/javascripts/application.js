@@ -129,7 +129,9 @@ $('nav').on('click', 'a[data-action]', function(e) {
     e.preventDefault();
     ui.reset();
     var action = $(this).data('action');
-    if (action === 'translate') {
+    if (action === 'file') {
+        $('input[type="file"]').trigger('click');
+    } else if (action === 'translate') {
         translator.translate();
     } else if (action === 'execute') {
         executer.execute();
@@ -139,4 +141,14 @@ $('nav').on('click', 'a[data-action]', function(e) {
 
 $('#popup span').on('click', function() {
     popup.close();
+});
+
+
+$('input[type="file"]').on('change', function() {
+    var file = $(this)[0].files[0];
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        $('textarea').val(e.target.result);
+    };
+    reader.readAsText(file);
 });

@@ -44,6 +44,12 @@ nav a:focus {
 }
 
 
+input[type="file"] {
+    position: absolute;
+    left: -100rem;
+}
+
+
 main {
     position: relative;
     display: flex;

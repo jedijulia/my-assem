@@ -14,6 +14,7 @@ var translator = {
             popup.error(error.message);
             return null;
         }
+
         var container = translator.container.empty();
         for (var i = 0, l = translator.data.translation.length; i < l; i++) {
             var item = '<li>' + translator.data.translation[i] + '</li>';
@@ -36,11 +37,13 @@ var translator = {
 
 
 var executer = {
+    instance: null,
     execute: function() {
         $('nav a[data-action]').addClass('disabled');
         popup.close();
         translator.translate();
-        execute(translator.data);
+        executer.instance = execute(translator.data);
+        executer.instance.execute();
     }
 };
 
@@ -127,6 +130,7 @@ popup.dom.on('submit', function(e) {
     e.preventDefault();
     input = $(this).find('input').val().trim();
     popup.close();
+    executer.instance.input(input);
 });
 
 

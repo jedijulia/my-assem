@@ -39,6 +39,7 @@ function execute(info) {
                 return;
             }
             memory[params] = num;
+            input = null;
         } else {
             $(document).trigger({ type: 'askinput', message: 'Enter a number' });
             blocked = true;

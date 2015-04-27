@@ -52,6 +52,9 @@ var ui = {
         for (var i = 0, l = stack.length; i < l; i++) {
             ui._stack.append('<li>' + stack[i] + '</li>');
         }
+    },
+    reset: function() {
+        ui._stack.empty();
     }
 };
 
@@ -124,6 +127,7 @@ $(document).on('error', function(e) {
 
 $('nav').on('click', 'a[data-action]', function(e) {
     e.preventDefault();
+    ui.reset();
     var action = $(this).data('action');
     if (action === 'translate') {
         translator.translate();

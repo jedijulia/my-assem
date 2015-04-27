@@ -33,6 +33,7 @@ var translate = (function() {
         translation = [];
         var_table = {};
         label_table = {};
+        pointer = 30;
         resolve_vars(code);
 
         var found_end = false;

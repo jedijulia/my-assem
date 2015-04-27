@@ -8,7 +8,12 @@ var translator = {
         translator.data = translator.data.replace(/ +/g, ' ');
         translator.data = translator.data.split(/\r?\n/g);
 
-        translator.data = translate(translator.data);
+        try {
+            translator.data = translate(translator.data);
+        } catch (error) {
+            popup.error(error.message);
+            return null;
+        }
         var container = translator.container.empty();
         for (var i = 0, l = translator.data.translation.length; i < l; i++) {
             var item = '<li>' + translator.data.translation[i] + '</li>';
@@ -104,9 +109,10 @@ var popup = {
         popup.opened = true;
     },
     close: function() {
-        popup.dom.attr('class', 'unshown');
+        popup.dom.addClass('unshown');
         setTimeout(function() {
             popup.container.addClass('hidden');
+            popup.dom.removeClass('info error');
             popup.dom.find('div').empty();
             popup.dom.find('span').removeClass('hidden');
             popup.opened = false;

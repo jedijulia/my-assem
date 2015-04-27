@@ -31,6 +31,8 @@ var translate = (function() {
 
     function translate(code) {
         translation = [];
+        var_table = {};
+        label_table = {};
         resolve_vars(code);
 
         var found_end = false;

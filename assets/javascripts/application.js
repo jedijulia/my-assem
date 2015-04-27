@@ -32,9 +32,7 @@ var translator = {
 
 var executer = {
     execute: function() {
-        if (!translator.data) {
-            translator.translate();
-        }
+        translator.translate();
         execute(translator.data);
     }
 };
@@ -53,8 +51,12 @@ var ui = {
             ui._stack.append('<li>' + stack[i] + '</li>');
         }
     },
-    reset: function() {
+    reset: function(full) {
         ui._stack.empty();
+        if (full) {
+            ui._translation.empty();
+            translator.variables.empty();
+        }
     }
 };
 
@@ -149,6 +151,9 @@ $('input[type="file"]').on('change', function() {
     var reader = new FileReader();
     reader.onload = function(e) {
         $('textarea').val(e.target.result);
+        translator.data = null;
+        ui.reset(true);
+        $('input[type="file"]').val('');
     };
     reader.readAsText(file);
 });

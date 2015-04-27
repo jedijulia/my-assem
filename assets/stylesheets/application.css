@@ -109,7 +109,7 @@ section.unshown {
     top: 0;
     bottom: 50%;
     width: 100%;
-    background-color: rgba(46, 125, 50, 0.1);
+    background-color: rgba(63, 81, 181, 0.1);
 }
 
 #variables {
@@ -131,6 +131,10 @@ section.unshown {
     background-color: rgba(244, 67, 54, 0.1);
 }
 
+#popup.info {
+    background-color: rgba(46, 125, 50, 0.1);
+}
+
 
 section h3 {
     padding: 0.5rem 1.5rem 0.3rem 1.5rem;
@@ -144,7 +148,7 @@ section h3 {
 }
 
 #stack h3 {
-    background-color: #2e7d32;
+    background-color: #3f51b5;
 }
 
 #variables h3 {
@@ -157,6 +161,10 @@ section h3 {
 
 #popup.error h3 {
     background-color: #f44336;
+}
+
+#popup.info h3 {
+    background-color: #2e7d32;
 }
 
 

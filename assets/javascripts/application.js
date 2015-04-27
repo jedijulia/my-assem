@@ -86,6 +86,15 @@ var popup = {
             popup.open();
         }
     },
+    info: function(message) {
+        if (!popup.opened) {
+            var content = '<p>' + message + '</p>';
+            popup.dom.addClass('info');
+            popup.dom.find('h3').text('Info');
+            popup.dom.find('div').html(content);
+            popup.open();
+        }
+    },
     open: function() {
         popup.container.removeClass('hidden');
         setTimeout(function() {
@@ -117,19 +126,21 @@ $(document).on('changedpc', function(e) {
     ui.highlight(e.pc);
 });
 
-
 $(document).on('stack', function(e) {
     ui.stack(e.stack);
 });
-
 
 $(document).on('askinput', function(e) {
     popup.input(e.message);
 });
 
-
 $(document).on('error', function(e) {
     popup.error(e.error);
+});
+
+$(document).on('done', function() {
+    ui._translation.children().removeClass('highlight');
+    popup.info('Program execution finished.');
 });
 
 

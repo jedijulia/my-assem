@@ -199,6 +199,7 @@ function execute(info) {
             }
         } else {
             clearInterval(_t);
+            $(document).trigger({ type: 'done' });
         }
     }, 1000);
 }

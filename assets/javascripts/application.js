@@ -38,6 +38,7 @@ var translator = {
 var executer = {
     execute: function() {
         $('nav a[data-action]').addClass('disabled');
+        popup.close();
         translator.translate();
         execute(translator.data);
     }
@@ -147,6 +148,7 @@ $(document).on('error', function(e) {
 
 $(document).on('done', function() {
     ui._translation.children().removeClass('highlight');
+    $('nav a[data-action]').removeClass('disabled');
     popup.info('Program execution finished.');
 });
 

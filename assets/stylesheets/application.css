@@ -43,6 +43,10 @@ nav a:focus {
     background-color: #009688;
 }
 
+nav a.disabled {
+    color: #777;
+}
+
 
 input[type="file"] {
     position: absolute;

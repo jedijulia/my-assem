@@ -37,6 +37,7 @@ var translator = {
 
 var executer = {
     execute: function() {
+        $('nav a[data-action]').addClass('disabled');
         translator.translate();
         execute(translator.data);
     }
@@ -152,16 +153,18 @@ $(document).on('done', function() {
 
 $('nav').on('click', 'a[data-action]', function(e) {
     e.preventDefault();
-    ui.reset();
-    var action = $(this).data('action');
-    if (action === 'file') {
-        $('input[type="file"]').trigger('click');
-    } else if (action === 'translate') {
-        $('aside section').removeClass('unshown');
-        translator.translate();
-    } else if (action === 'execute') {
-        $('aside section').removeClass('unshown');
-        executer.execute();
+    if (!$(this).hasClass('disabled')) {
+        ui.reset();
+        var action = $(this).data('action');
+        if (action === 'file') {
+            $('input[type="file"]').trigger('click');
+        } else if (action === 'translate') {
+            $('aside section').removeClass('unshown');
+            translator.translate();
+        } else if (action === 'execute') {
+            $('aside section').removeClass('unshown');
+            executer.execute();
+        }
     }
 });
 

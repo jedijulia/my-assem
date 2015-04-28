@@ -20,23 +20,32 @@
         </main>
 
         <aside id="overlay">
-            <section id="translation" class="unshown">
+            <section id="translation">
                 <h3>Machine Code</h3>
                 <ul></ul>
             </section>
 
             <div>
-                <section id="stack" class="unshown">
+                <section id="stack">
                     <h3>Stack</h3>
                     <ul></ul>
                 </section>
 
-                <section id="variables" class="unshown">
+                <section id="variables">
                     <h3>Variables</h3>
                     <ul></ul>
                 </section>
             </div>
         </aside>
+
+        <section id="trace">
+            <h3>Trace</h3>
+            <div>
+                <button data-action="reset">Reset</button>
+                <button data-action="run">Run</button>
+                <button data-action="next">Next</button>
+            </div>
+        </section>
 
         <div id="popup-container" class="hidden">
             <section id="popup" class="unshown">

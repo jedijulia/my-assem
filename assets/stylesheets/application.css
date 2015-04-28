@@ -81,7 +81,6 @@ aside {
     right: 0;
     bottom: 4rem;
     width: 30rem;
-    pointer-events: none;
 }
 
 
@@ -124,6 +123,14 @@ section.unshown {
     background-color: rgba(156, 39, 176, 0.1);
 }
 
+#trace {
+    position: absolute;
+    top: 8rem;
+    right: 30rem;
+    width: auto;
+    background-color: rgba(96, 125, 139, 0.1);
+}
+
 #popup {
     position: relative;
     width: 30rem;
@@ -157,6 +164,10 @@ section h3 {
 
 #variables h3 {
     background-color: #9c27b0;
+}
+
+#trace h3 {
+    background-color: #607d8b;
 }
 
 #popup h3 {
@@ -208,6 +219,44 @@ section ul li.highlight {
 
 .hidden {
     display: none !important;
+}
+
+
+#trace div {
+    display: flex;
+}
+
+
+#trace button {
+    display: inline-block;
+    width: 3.2rem;
+    height: 3.2rem;
+    overflow: hidden;
+    text-indent: -100rem;
+    border: 0;
+    background: transparent center center no-repeat;
+    background-size: 60% auto;
+    cursor: pointer;
+    outline: none;
+    opacity: 0.5;
+}
+
+#trace button:hover,
+#trace button:focus {
+    opacity: 1;
+}
+
+#trace button[data-action="reset"] {
+    background-image: url("../images/refresh.svg");
+    background-size: 55% auto;
+}
+
+#trace button[data-action="run"] {
+    background-image: url("../images/play.svg");
+}
+
+#trace button[data-action="next"] {
+    background-image: url("../images/skip-next.svg");
 }
 
 

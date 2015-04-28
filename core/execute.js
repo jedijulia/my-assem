@@ -38,9 +38,7 @@ var execute = (function() {
         this.read = function(params) {
             if (input) {
                 blocked = false;
-                console.log('NUM: ' + num);
                 var num = parseInt(input);
-                console.info('NUM: ' + num);
                 if (input.length > 2 || isNaN(input)) {
                     throw new Error('Invalid Input!');
                 }
@@ -106,7 +104,7 @@ var execute = (function() {
         this.jl = function(params) {
             var l = stack.length;
             if (l >= 2 && stack[l - 1] < stack[l - 2]) {
-                jmp(params);
+                this.jmp(params);
             } else if (l < 2) {
                 throw new Error('Null Compare Error!');
             }
@@ -115,7 +113,7 @@ var execute = (function() {
         this.jg = function(params) {
             var l = stack.length;
             if (l >= 2 && stack[l - 1] > stack[l - 2]) {
-                jmp(params);
+                this.jmp(params);
             } else if (l < 2) {
                 throw new Error('Null Compare Error!');
             }
@@ -124,7 +122,7 @@ var execute = (function() {
         this.jeq = function(params) {
             var l = stack.length;
             if (l >= 2 && stack[l - 1] === stack[l - 2]) {
-                jmp(params);
+                this.jmp(params);
             } else if (l < 2) {
                 throw new Error('Null Compare Error!');
             }
@@ -135,7 +133,7 @@ var execute = (function() {
             if (l >= 2) {
                 var sum = stack.pop() + stack.pop();
                 if (sum <= 99) {
-                    pushi(sum);
+                    this.pushi(sum);
                 } else {
                     throw new Error('Overflow Error!');
                 }
@@ -149,7 +147,7 @@ var execute = (function() {
             if (l >= 2) {
                 var diff = stack.pop() - stack.pop();
                 if (diff >= 0) {
-                    pushi(diff);
+                    this.pushi(diff);
                 } else {
                     throw new Error('Overflow Error!');
                 }
@@ -161,7 +159,7 @@ var execute = (function() {
         this.cmp = function() {
             var l = stack.length;
             if (l >= 2) {
-                pushi(stack.pop() === stack.pop() ? 1 : 0);
+                this.pushi(stack.pop() === stack.pop() ? 1 : 0);
             } else if (l < 2) {
                 throw new Error('Null Compare Error!');
             }

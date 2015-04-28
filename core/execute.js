@@ -113,7 +113,7 @@ function execute(info) {
         if (l >= 2 && stack[l-1] < stack[l-2]) {
             jmp(params);
         } else if (l < 2) {
-            error = "Null Compare Error";
+            error = "Null Compare!";
         }
     }
 
@@ -122,7 +122,7 @@ function execute(info) {
         if (l >= 2 && stack[l-1] > stack[l-2]) {
             jmp(params);
         } else if (l < 2) {
-            error = "Null Compare Error";
+            error = "Null Compare!";
         }
     }
 
@@ -131,7 +131,7 @@ function execute(info) {
         if (l >= 2 && stack[l-1] == stack[l-2]) {
             jmp(params);
         } else if (l < 2) {
-            error = "Null Compare Error";
+            error = "Null Compare!";
         }
     }
 
@@ -142,10 +142,10 @@ function execute(info) {
             if (sum <= 99) {
                 pushi(sum);
             } else {
-                error = "Overflow Error";
+                error = "Overflow Error!";
             }
         } else {
-            error = "Null Operand Error";
+            error = "Null Operand!";
         }
     }
 
@@ -159,7 +159,7 @@ function execute(info) {
                 error = "Overflow Error";
             }
         } else {
-            error = "Null Operand Error";
+            error = "Null Operand!";
         }
     }
 
@@ -169,7 +169,7 @@ function execute(info) {
             var a = (stack.pop() == stack.pop()) ? 1 : 0;
             pushi(a);
         } else if (l < 2) {
-            error = "Null Compare Error";
+            error = "Null Compare!";
         }
     }
 

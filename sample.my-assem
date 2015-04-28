@@ -1,8 +1,0 @@
-begin
-
-pushi 12
-pushi 12
-
-add
-
-end

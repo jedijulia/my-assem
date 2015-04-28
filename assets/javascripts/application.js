@@ -39,13 +39,15 @@ var translator = {
 var executer = {
     instance: null,
     initialize: function() {
-        $('nav a[data-action]').addClass('disabled');
-        popup.close();
         translator.translate();
         executer.instance = execute(translator.data);
     },
-    execute: function() {
-        executer.initialize();
+    execute: function(initialize) {
+        if (!initialize) {
+            executer.initialize();
+        }
+        popup.close();
+        $('nav a[data-action]').addClass('disabled');
         executer.instance.execute();
     },
     execute_one: function() {
@@ -176,10 +178,27 @@ $('nav').on('click', 'a[data-action]', function(e) {
         } else if (action === 'translate') {
             $('aside section').removeClass('unshown');
             translator.translate();
+        } else if (action === 'trace') {
+            $('aside section, #trace').removeClass('unshown');
+            translator.translate();
         } else if (action === 'execute') {
             $('aside section').removeClass('unshown');
             executer.execute();
         }
+    }
+});
+
+
+$('#trace button[data-action]').on('click', function() {
+    var action = $(this).data('action');
+    if (action === 'reset') {
+        ui.reset(true);
+        translator.translate();
+        executer.initialize();
+    } else if (action === 'run') {
+        executer.execute(true);
+    } else if (action === 'next') {
+        executer.execute_one();
     }
 });
 

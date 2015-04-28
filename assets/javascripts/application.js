@@ -38,12 +38,21 @@ var translator = {
 
 var executer = {
     instance: null,
-    execute: function() {
+    initialize: function() {
         $('nav a[data-action]').addClass('disabled');
         popup.close();
         translator.translate();
         executer.instance = execute(translator.data);
+    },
+    execute: function() {
+        executer.initialize();
         executer.instance.execute();
+    },
+    execute_one: function() {
+        if (!executer.instance) {
+            executer.initialize();
+        }
+        executer.instance.execute_one();
     }
 };
 

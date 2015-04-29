@@ -73,7 +73,10 @@ var translate = (function() {
         if (onepart_commands.indexOf(label) !== -1) { //in list
             var translated = symbol_table[label] + '00';
         }  else {
-            var label_location = label_table[label.substring(0, label.length - 1)];
+            var label_location = +label_table[label.substring(0, label.length - 1)];
+            if (label_location < 10) {
+                label_location = '0' + label_location;
+            }
             var translated = symbol_table['labeldef'] + label_location;
         }
         addTranslation(translated);
@@ -104,7 +107,11 @@ var translate = (function() {
 
     function translate_loc_identifier_command(command, line_number) {
         var translated = symbol_table[command[0]];
-        translated += label_table[command[1]];
+        var value = +label_table[command[1]];
+        if (value < 10) {
+            value = '0' + value;
+        }
+        translated += value;
         addTranslation(translated);
     }
 

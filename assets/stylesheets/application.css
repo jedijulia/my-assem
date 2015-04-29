@@ -92,6 +92,7 @@ aside {
     right: 0;
     bottom: 4rem;
     width: 30rem;
+    pointer-events: none;
 }
 
 

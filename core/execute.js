@@ -203,7 +203,7 @@ var execute = (function() {
         };
 
         this.execute = function() {
-            _t = setInterval(_this.execute_one, 1000);
+            _t = setInterval(_this.execute_one, 250);
         };
 
         this.unblock = function() {

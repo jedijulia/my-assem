@@ -258,3 +258,8 @@ $('input[type="file"]').on('change', function() {
     };
     reader.readAsText(file);
 });
+
+
+$('textarea').on('scroll', function(e) {
+    $('.line-numbers, main pre').css('top', -(+e.target.scrollTop) + 'px');
+});

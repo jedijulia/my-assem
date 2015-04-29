@@ -57,7 +57,9 @@ var execute = (function() {
             if (memory[params] === undefined) {
                 throw new Error('Trying to access an undefined variable!');
             }
-            alert(memory[params]);
+            $(document).trigger({ type: 'disp', value: memory[params] });
+            blocked = true;
+            program_counter++;
         };
 
         this.pushi = function(params) {
@@ -174,23 +176,25 @@ var execute = (function() {
 
         this.execute_one = function() {
             if (run) {
-                $(document).trigger({ type: 'changedpc', pc: program_counter });
-                var command = memory[program_counter];
-                var code = command.substring(0, 2);
-                var params = parseInt(command.substring(2));
-                var prev_pc = program_counter;
-                var func = _this.resolve_code_to_name(code);
-                try {
-                    _this[func](params);
-                } catch (e) {
-                    $(document).trigger({ type: 'error', error: e.message });
-                    run = false;
-                }
                 if (!blocked) {
-                    if (program_counter === prev_pc) {
-                        program_counter += 1;
+                    $(document).trigger({ type: 'changedpc', pc: program_counter });
+                    var command = memory[program_counter];
+                    var code = command.substring(0, 2);
+                    var params = parseInt(command.substring(2));
+                    var prev_pc = program_counter;
+                    var func = _this.resolve_code_to_name(code);
+                    try {
+                        _this[func](params);
+                    } catch (e) {
+                        $(document).trigger({ type: 'error', error: e.message });
+                        run = false;
                     }
-                    $(document).trigger({ type: 'stack', stack: stack });
+                    if (!blocked) {
+                        if (program_counter === prev_pc) {
+                            program_counter += 1;
+                        }
+                        $(document).trigger({ type: 'stack', stack: stack });
+                    }
                 }
             } else {
                 clearInterval(_t);
@@ -200,6 +204,10 @@ var execute = (function() {
 
         this.execute = function() {
             _t = setInterval(_this.execute_one, 1000);
+        };
+
+        this.unblock = function() {
+            blocked = false;
         };
     }
 

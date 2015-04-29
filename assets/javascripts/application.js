@@ -132,6 +132,7 @@ var popup = {
             popup.dom.find('div').empty();
             popup.dom.find('span').removeClass('hidden');
             popup.opened = false;
+            executer.instance.unblock();
         }, 200);
     }
 };
@@ -181,6 +182,10 @@ $(document).on('stack', function(e) {
 
 $(document).on('askinput', function(e) {
     popup.input(e.message);
+});
+
+$(document).on('disp', function(e) {
+    popup.info(e.value);
 });
 
 $(document).on('error', function(e) {

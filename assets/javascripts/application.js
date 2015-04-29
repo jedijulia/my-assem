@@ -241,10 +241,11 @@ $('nav').on('click', 'a[data-action]', function(e) {
             $('aside section').removeClass('unshown');
             translator.translate();
 
-            var output = prompt('Where do you want to store the output file?');
+            var output = prompt('Where do you want to store the output file?',
+                process.env[process.platform === 'win32'
+                ? 'USERPROFILE' : 'HOME']);
             if (output) {
                 var contents = translator.data.translation.join('\n')
-                output = path.join(process.cwd(), output);
                 fs.writeFileSync(output, contents);
                 popup.info('Output file created at: ' + output);
             }

@@ -54,7 +54,7 @@ var execute = (function() {
         };
 
         this.disp = function(params) {
-            if (!memory[params]) {
+            if (memory[params] === undefined) {
                 throw new Error('Trying to access an undefined variable!');
             }
             alert(memory[params]);
@@ -68,7 +68,7 @@ var execute = (function() {
         };
 
         this.pushv = function(params) {
-            if (!memory[params]) {
+            if (memory[params] === undefined) {
                 throw new Error('Trying to access an undefined variable!');
             }
             if (stack.length === max_stack_size) {
@@ -78,9 +78,8 @@ var execute = (function() {
         };
 
         this.pop = function(params) {
-            if (!stack.length) {
-                // @COMMENT is this the right error message when stack is empty?
-                throw new Error('Stack Overflow!');
+            if (stack.length <= 0) {
+                throw new Error('Stack Empty!');
             }
             memory[params] = stack.pop();
         };

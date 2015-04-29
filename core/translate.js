@@ -38,6 +38,8 @@ var translate = (function() {
 
         var found_end = false;
         for (var i = 0; i < code.length; i++) {
+            code[i] = code[i].trim();
+
             if (found_end) {
                 break;
             }
@@ -120,7 +122,7 @@ var translate = (function() {
 
 
     function resolve_vars(code) {
-        if (code[0] !== 'begin') {
+        if (code[0].trim() !== 'begin') {
             throw new Error('Misplaced begin, not found at line 1');
         }
         for (var i = 0; i < code.length; i++) {

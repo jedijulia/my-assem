@@ -59,6 +59,22 @@ var executer = {
 };
 
 
+var editor = {
+    highlight: $('.current-line'),
+    highlight_line: function() {
+        var contents = $('textarea').val();
+        var before = contents.substring(0, $('textarea')[0].selectionStart);
+        before = before.split(/\r?\n/g);
+        $('.line-numbers span').removeClass('current');
+        $('.line-numbers span[data-line="' + before.length + '"]')
+            .addClass('current');
+
+        var offset = $('.line-numbers span.current').offset().top;
+        editor.highlight.css('top', offset - 20 + 'px');
+    }
+};
+
+
 var ui = {
     _translation: translator.container,
     _stack: $('#stack ul'),
@@ -162,8 +178,12 @@ var highlighter = {
             linenumbers.empty();
             var lines = $(this).val().split(/\r?\n/g);
             for (var i = 0, l = lines.length; i < l; i++) {
-                linenumbers.append('<span>' + (i + 1) + '</span>');
+                var line = '<span data-line="' + (i + 1) + '">'
+                    + (i + 1) + '</span>';
+                linenumbers.append(line);
             }
+
+            editor.highlight_line();
         });
     }
 };
@@ -262,4 +282,10 @@ $('input[type="file"]').on('change', function() {
 
 $('textarea').on('scroll', function(e) {
     $('.line-numbers, main pre').css('top', -(+e.target.scrollTop) + 'px');
+    editor.highlight_line();
+});
+
+
+$('textarea').on('click', function(e) {
+    editor.highlight_line();
 });

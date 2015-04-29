@@ -93,7 +93,7 @@ main div {
     bottom: 0;
     width: 4rem;
     padding: 1rem 0;
-    background-color: #101112;
+    background-color: #0d1011;
 }
 
 
@@ -104,6 +104,21 @@ main div span {
     text-align: right;
     color: #686b6b;
     padding-right: 1rem;
+}
+
+main div span.current {
+    background-color: #101112;
+}
+
+
+main > p {
+    position: absolute;
+    top: 1rem;
+    left: 4rem;
+    right: 0;
+    z-index: -1;
+    height: 1.6rem;
+    background-color: #101112;
 }
 
 

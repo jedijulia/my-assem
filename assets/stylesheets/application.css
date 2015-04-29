@@ -71,6 +71,17 @@ main textarea {
     border: 0;
     resize: none;
     outline: none;
+    -webkit-text-fill-color: transparent;
+}
+
+
+main pre {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
 }
 
 
@@ -318,4 +329,26 @@ section ul li.highlight {
     border-bottom: 1px solid white;
     background-color: transparent;
     outline: none;
+}
+
+
+
+/** VENDOR OVERRIDES **/
+.hljs {
+    font-family: "Consolas", monospace;
+    font-size: 1.3rem;
+    line-height: 1;
+    color: #eee;
+    background-color: transparent;
+    padding: 1rem;
+}
+
+
+.hljs-keyword {
+    color: #33b5db;
+}
+
+
+.hljs-number {
+    color: #cd3c34;
 }

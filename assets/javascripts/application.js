@@ -137,6 +137,32 @@ var popup = {
 };
 
 
+var highlighter = {
+    initialize: function() {
+        hljs.registerLanguage('myassem', function(hljs) {
+            return {
+                keywords: 'read disp pushi pushv pop mod jmp jl jg jeq add sub '
+                    + 'cmp begin end',
+                contains: [
+                    {
+                        className: 'number',
+                        begin: /(^| )\d+/
+                    }
+                ]
+            }
+        });
+
+        var code = $('pre code');
+        $('textarea').on('keydown keyup', function(e) {
+            code.text($(this).val());
+            hljs.highlightBlock(code[0]);
+        });
+    }
+};
+
+highlighter.initialize();
+
+
 popup.dom.on('submit', function(e) {
     e.preventDefault();
     input = $(this).find('input').val().trim();

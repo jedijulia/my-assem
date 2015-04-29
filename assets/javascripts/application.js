@@ -154,9 +154,16 @@ var highlighter = {
         });
 
         var code = $('pre code');
+        var linenumbers = $('.line-numbers');
         $('textarea').on('keydown keyup', function(e) {
             code.text($(this).val());
             hljs.highlightBlock(code[0]);
+
+            linenumbers.empty();
+            var lines = $(this).val().split(/\r?\n/g);
+            for (var i = 0, l = lines.length; i < l; i++) {
+                linenumbers.append('<span>' + (i + 1) + '</span>');
+            }
         });
     }
 };

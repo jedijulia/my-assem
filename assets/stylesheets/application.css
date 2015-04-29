@@ -69,6 +69,7 @@ main textarea {
     color: #eee;
     background-color: transparent;
     border: 0;
+    margin-left: 3.5rem;
     resize: none;
     outline: none;
     -webkit-text-fill-color: transparent;
@@ -78,10 +79,31 @@ main textarea {
 main pre {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 3.5rem;
     right: 0;
     bottom: 0;
     pointer-events: none;
+}
+
+
+main div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 3.5rem;
+    padding: 1rem 0;
+    background-color: #0d1011;
+}
+
+
+main div span {
+    display: block;
+    font-size: 1.6rem;
+    line-height: 1;
+    text-align: right;
+    color: #686b6b;
+    padding-right: 1rem;
 }
 
 

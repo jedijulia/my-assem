@@ -383,6 +383,7 @@ section ul li.highlight {
 
 
 .hljs-keyword {
+    font-weight: normal;
     color: #33b5db;
 }
 

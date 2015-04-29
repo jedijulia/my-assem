@@ -1,3 +1,7 @@
+var fs = require('fs');
+var path = require('path');
+
+
 var translator = {
     data: null,
     container: $('#translation ul'),
@@ -236,6 +240,14 @@ $('nav').on('click', 'a[data-action]', function(e) {
         } else if (action === 'translate') {
             $('aside section').removeClass('unshown');
             translator.translate();
+
+            var output = prompt('Where do you want to store the output file?');
+            if (output) {
+                var contents = translator.data.translation.join('\n')
+                output = path.join(process.cwd(), output);
+                fs.writeFileSync(output, contents);
+                popup.info('Output file created at: ' + output);
+            }
         } else if (action === 'trace') {
             $('aside section, #trace').removeClass('unshown');
             translator.translate();

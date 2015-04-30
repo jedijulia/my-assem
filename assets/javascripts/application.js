@@ -16,7 +16,7 @@ var translator = {
             translator.data = translate(translator.data);
         } catch (error) {
             popup.error(error.message);
-            return null;
+            return false;
         }
 
         var container = translator.container.empty();
@@ -36,6 +36,8 @@ var translator = {
         for (var i = 0, l = variables.length; i < l; i++) {
             translator.variables.append(variables);
         }
+
+        return true;
     }
 };
 
@@ -43,16 +45,22 @@ var translator = {
 var executer = {
     instance: null,
     initialize: function() {
-        translator.translate();
-        executer.instance = execute(translator.data);
+        var okay = translator.translate();
+        if (okay) {
+            executer.instance = execute(translator.data);
+        }
+        return okay;
     },
     execute: function(initialize) {
+        var okay = true;
         if (!initialize) {
-            executer.initialize();
+            okay = executer.initialize();
         }
-        popup.close();
-        $('nav a[data-action]').addClass('disabled');
-        executer.instance.execute();
+        if (okay) {
+            popup.close();
+            $('nav a[data-action]').addClass('disabled');
+            executer.instance.execute();
+        }
     },
     execute_one: function() {
         if (!executer.instance) {
@@ -239,15 +247,16 @@ $('nav').on('click', 'a[data-action]', function(e) {
             $('input[type="file"]').trigger('click');
         } else if (action === 'translate') {
             $('aside section').removeClass('unshown');
-            translator.translate();
-
-            var output = prompt('Where do you want to store the output file?',
-                process.env[process.platform === 'win32'
-                ? 'USERPROFILE' : 'HOME']);
-            if (output) {
-                var contents = translator.data.translation.join('\n')
-                fs.writeFileSync(output, contents);
-                popup.info('Output file created at: ' + output);
+            var okay = translator.translate();
+            if (okay) {
+                var output = prompt('Where do you want to store the output file?',
+                    process.env[process.platform === 'win32'
+                    ? 'USERPROFILE' : 'HOME']);
+                if (output) {
+                    var contents = translator.data.translation.join('\n')
+                    fs.writeFileSync(output, contents);
+                    popup.info('Output file created at: ' + output);
+                }
             }
         } else if (action === 'trace') {
             $('aside section, #trace').removeClass('unshown');
@@ -264,8 +273,10 @@ $('#trace button[data-action]').on('click', function() {
     var action = $(this).data('action');
     if (action === 'reset') {
         ui.reset(true);
-        translator.translate();
-        executer.initialize();
+        var okay = translator.translate();
+        if (okay) {
+            executer.initialize();
+        }
     } else if (action === 'run') {
         executer.execute(true);
     } else if (action === 'next') {

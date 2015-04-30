@@ -246,6 +246,7 @@ $('nav').on('click', 'a[data-action]', function(e) {
         if (action === 'file') {
             $('input[type="file"]').trigger('click');
         } else if (action === 'translate') {
+            $('main').addClass('mini');
             $('aside section').removeClass('unshown');
             var okay = translator.translate();
             if (okay) {
@@ -259,9 +260,11 @@ $('nav').on('click', 'a[data-action]', function(e) {
                 }
             }
         } else if (action === 'trace') {
+            $('main').addClass('mini');
             $('aside section, #trace').removeClass('unshown');
             translator.translate();
         } else if (action === 'execute') {
+            $('main').addClass('mini');
             $('aside section').removeClass('unshown');
             executer.execute();
         }
@@ -300,6 +303,7 @@ $('input[type="file"]').on('change', function() {
         translator.data = null;
         ui.reset(true);
         $('input[type="file"]').val('');
+        $('main').removeClass('mini');
         $('aside section').addClass('unshown');
 
         var code = $('pre code');

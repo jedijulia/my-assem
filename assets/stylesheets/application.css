@@ -59,6 +59,11 @@ main {
     display: flex;
     height: calc(100% - 20px);
     overflow: hidden;
+    transition: margin-right 250ms ease;
+}
+
+main.mini {
+    margin-right: 30rem;
 }
 
 
@@ -125,9 +130,9 @@ main > p {
 aside {
     display: flex;
     position: absolute;
-    top: 6rem;
+    top: 2rem;
     right: 0;
-    bottom: 4rem;
+    bottom: 0;
     width: 30rem;
     pointer-events: none;
 }
@@ -174,7 +179,7 @@ section.unshown {
 
 #trace {
     position: absolute;
-    top: 8rem;
+    top: 4rem;
     right: 30rem;
     width: auto;
     background-color: rgba(96, 125, 139, 0.1);

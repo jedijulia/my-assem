@@ -29,6 +29,7 @@ var translate = (function() {
 
     var translation = [];
 
+
     function translate(code) {
         translation = [];
         var_table = {};
@@ -39,14 +40,14 @@ var translate = (function() {
         var found_end = false;
         for (var i = 0; i < code.length; i++) {
             code[i] = code[i].trim();
-            if (i === code.length - 1 && code[i] !== 'end') {
-                throw new Error('End not found!');
-            }
             if (found_end) {
                 break;
             }
             if (code[i] === 'end') {
                 found_end = true;
+            }
+            if (i === code.length - 1 && code[i] !== 'end') {
+                throw new Error('End not found!');
             }
 
             var line = code[i].split(' ');
@@ -62,6 +63,7 @@ var translate = (function() {
         return {'translation': translation, 'var_table': var_table, 'label_table': label_table};
     }
 
+
     function addTranslation(translated) {
         if (translation.length <= 30) {
             translation.push(translated);
@@ -69,6 +71,7 @@ var translate = (function() {
             throw new Error('Out of memory error');
         }
     }
+
 
     function translate_onepart_command(command, line_number) {
         var label = command[0];
@@ -83,6 +86,7 @@ var translate = (function() {
         }
         addTranslation(translated);
     }
+
 
     function translate_twopart_command(command, line_number) {
         var identifier = ['read', 'disp', 'pushv', 'pop'];
@@ -107,6 +111,7 @@ var translate = (function() {
         addTranslation(translated);
     }
 
+
     function translate_loc_identifier_command(command, line_number) {
         var translated = symbol_table[command[0]];
         var value = +label_table[command[1]];
@@ -116,6 +121,7 @@ var translate = (function() {
         translated += value;
         addTranslation(translated);
     }
+
 
     function translate_value_command(command, line_number) {
         var translated = symbol_table[command[0]];
@@ -149,6 +155,7 @@ var translate = (function() {
         }
     }
 
+
     function get_vars_onepart_command(command, line_number) {
         var label = command[0];
         if (onepart_commands.indexOf(label) === -1) { //not in list
@@ -162,6 +169,7 @@ var translate = (function() {
             }
         }
     }
+
 
     function get_vars_twopart_command(command, line_number) {
         var identifier = ['read', 'disp', 'pushv', 'pop'];
@@ -177,6 +185,7 @@ var translate = (function() {
         }
     }
 
+
     function get_vars_identifier_command(command, line_number) {
         var identifier = command[1];
 
@@ -190,6 +199,7 @@ var translate = (function() {
         }
     }
 
+
     function get_vars_loc_identifier_command(command, line_number) {
         var loc_identifier = command[1];
 
@@ -200,24 +210,3 @@ var translate = (function() {
 
     return translate;
 })();
-
-// commands = [
-//     'begin',
-//     'read N',
-//     'pushv N',
-//     'pushi 2',
-//     'mod',
-//     'pushi 0',
-//     'jeq even',
-//     'pushi 0',
-//     'pop ans',
-//     'jmp stop',
-//     'even:',
-//     'pushi 1',
-//     'pop ans',
-//     'stop:',
-//     'disp ans',
-//     'end'
-// ];
-
-// console.log(translate(commands));

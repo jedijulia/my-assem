@@ -283,11 +283,28 @@ $('input[type="file"]').on('change', function() {
     var file = $(this)[0].files[0];
     var reader = new FileReader();
     reader.onload = function(e) {
-        $('textarea').val(e.target.result);
+        var value = e.target.result;
+
+        $('textarea').val(value);
         translator.data = null;
         ui.reset(true);
         $('input[type="file"]').val('');
         $('aside section').addClass('unshown');
+
+        var code = $('pre code');
+        var linenumbers = $('.line-numbers');
+        code.text(value);
+        hljs.highlightBlock(code[0]);
+
+        linenumbers.empty();
+        var lines = value.split(/\r?\n/g);
+        for (var i = 0, l = lines.length; i < l; i++) {
+            var line = '<span data-line="' + (i + 1) + '">'
+                + (i + 1) + '</span>';
+            linenumbers.append(line);
+        }
+
+        editor.highlight_line();
     };
     reader.readAsText(file);
 });

@@ -39,7 +39,9 @@ var translate = (function() {
         var found_end = false;
         for (var i = 0; i < code.length; i++) {
             code[i] = code[i].trim();
-
+            if (i === code.length - 1 && code[i] !== 'end') {
+                throw new Error('End not found!');
+            }
             if (found_end) {
                 break;
             }
